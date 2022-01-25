@@ -1,0 +1,44 @@
+<nav id="menu">
+	<ul>
+		<li><a href="#ex1">Link #1</a></li>
+		<li><a href="#ex2">Link #2</a></li>
+		<li><a href="#ex3">Link #3</a></li>
+		<li><a href="#ex4">Link #4</a></li>
+	</ul>
+</nav>
+
+<div id="content">
+	<section id="ex1">
+		...
+	</section>
+	<div class="separator"></div>
+	<section id="ex2">
+		...
+	</section>
+	<div class="separator"></div>
+	<section id="ex3">
+		...
+	</section>
+	<div class="separator"></div>
+	<section id="ex4">
+		...
+	</section>
+</div>
+
+
+ 
+$(document).ready(function(){
+	$("#menu").on("click","a", function (event) {
+		//отменяем стандартную обработку нажатия по ссылке
+		event.preventDefault();
+
+		//забираем идентификатор бока с атрибута href
+		var id  = $(this).attr('href'),
+
+		//узнаем высоту от начала страницы до блока на который ссылается якорь
+			top = $(id).offset().top;
+		
+		//анимируем переход на расстояние - top за 1500 мс
+		$('body,html').animate({scrollTop: top}, 1500);
+	});
+});
